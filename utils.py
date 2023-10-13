@@ -9,7 +9,7 @@ from scrapers import HT_Scraper
 import random
 import re
 
-def pull_db():
+def gsheet_init():
     creds = {
       "type": os.environ['g_type'],
       "project_id": os.environ['g_proj_id'],
@@ -23,10 +23,9 @@ def pull_db():
       "client_x509_cert_url": os.environ['g_client_cirt_url'],
     }
     sa = gspread.service_account_from_dict(creds)
-    sh = sa.open_by_key('1bVqJTqGu7rB_ED49lpq_q2YVGMiUlx7fDsSocBetZPI').sheet1
-    ref_df = pd.DataFrame(sh.get_all_records())
 
-    return ref_df
+    return sa
+
 
 def get_food(user_zip, brand):
     if brand == 'Harris Teeter':
@@ -68,15 +67,19 @@ def get_recipies(item):
 
     return [rec_url, img_link, title]
 
-def write_user_df(contact,zipcode,food_df):
+def prep_meal_df(contact,zipcode,food_df):
     df = pd.DataFrame(food_df[['name', 'recipe_info']])
     df['rec_url'] = df['recipe_info'].apply(lambda x: x[0])
     df['img_url'] = df['recipe_info'].apply(lambda x: x[1])
     df['title'] = df['recipe_info'].apply(lambda x: x[2])
     df['contact'] = contact
     df['zip'] = zipcode
+    df['mpid'] = random.randint(10**14,(10**15)-1)
+    df = df.drop('recipe_info', axis=1)
+    return df
 
-    #write to google
-    print(df)
-    df.to_csv('./out.csv')
+def write_meal_df(sh,df):
+    # #write to google
+    sh.update([df.columns.values.tolist()] + df.values.tolist())
+
     return 'done'

@@ -4,6 +4,7 @@ import requests
 import re
 import pandas as pd
 import json
+import time
 
 def create_driver():
     # Create a new instance of the Chrome driver
@@ -34,18 +35,33 @@ def HT_Scraper(zip_code):
     'Pt. 2: Identify Product URL'
     # Load New Driver
     driver = create_driver()
-    driver.get('https://www.harristeeter.com/weeklyad')
 
-    # Parse network traffic to extract access token and product url
-    for request in driver.requests:
-        if request.response:
-            # if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/harristeeter?')):
-            if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/')):
-                ref = request.url
-                print(ref)
+    try:
+        driver.get('https://www.harristeeter.com/weeklyad')
+        # Parse network traffic to extract access token and product url
+        for request in driver.requests:
+            if request.response:
+                # if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/harristeeter?')):
+                if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/')):
+                    ref = request.url
+                    print(ref)
+        # modify ref to user specified store
+        ref = re.sub(r'store_code=.*', f'store_code={store_code}', ref)
 
-    # modify ref to user specified store
-    ref = re.sub(r'store_code=.*', f'store_code={store_code}', ref)
+    except UnboundLocalError:
+        print('ref error, sleeping and retrying')
+        time.sleep(30)
+        driver.get('https://www.harristeeter.com/weeklyad')
+        # Parse network traffic to extract access token and product url
+        for request in driver.requests:
+            if request.response:
+                # if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/harristeeter?')):
+                if request.url.startswith(('https://dam.flippenterprise.net/flyerkit/publications/')):
+                    ref = request.url
+                    print(ref)
+        # modify ref to user specified store
+        ref = re.sub(r'store_code=.*', f'store_code={store_code}', ref)
+
     # define access token
     access_token = re.findall('access_token=(.*?)&', str(ref))[0]
     publication_id = requests.get(ref).json()[0]['id']
