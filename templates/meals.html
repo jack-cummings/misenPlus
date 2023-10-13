@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,6 +12,7 @@
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
 <!--start navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -47,8 +48,9 @@
 <!-- end Navbar -->
 
 <!--Generic section-->
-<section class="py-7 bg-dark">
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div class="container bg-white">
+<section class="py-7 bg-white">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <a href={{ rec_url_1 }}>
@@ -57,100 +59,105 @@
           <h5> {{ title_1 }}</h5>
           <h5> Featured Ingredient: {{ ing_1 }}</h5>
         </div>
+        <div class="card d-lg-none bg-white ">
+          <b> {{ title_1 }}</b>
+          <b> Featured Ingredient: {{ ing_1 }}</b>
+        </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item">
       <a href={{ rec_url_2 }}>
-      <img class="d-block w-100" src= {{ img_url_2 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_2 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_2 }}</h5>
           <h5> Featured Ingredient: {{ ing_2 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_3 }}>
-      <img class="d-block w-100" src= {{ img_url_3 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_3 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_3 }}</h5>
           <h5> Featured Ingredient: {{ ing_3 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_4 }}>
-      <img class="d-block w-100" src= {{ img_url_4 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_4 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_4 }}</h5>
           <h5> Featured Ingredient: {{ ing_4 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_5 }}>
-      <img class="d-block w-100" src= {{ img_url_5 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_5 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_5 }}</h5>
           <h5> Featured Ingredient: {{ ing_5 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_6 }}>
-      <img class="d-block w-100" src= {{ img_url_6 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_6 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_6 }}</h5>
           <h5> Featured Ingredient: {{ ing_6 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_7 }}>
-      <img class="d-block w-100" src= {{ img_url_7 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_7 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_7 }}</h5>
           <h5> Featured Ingredient: {{ ing_7 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_8 }}>
-      <img class="d-block w-100" src= {{ img_url_8 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_8 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_8 }}</h5>
           <h5> Featured Ingredient: {{ ing_8 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_9 }}>
-      <img class="d-block w-100" src= {{ img_url_9 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_9 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_9 }}</h5>
           <h5> Featured Ingredient: {{ ing_9 }}</h5>
         </div>
       </a>
     </div>
-    <div class="carousel-item active">
+    <div class="carousel-item ">
       <a href={{ rec_url_10 }}>
-      <img class="d-block w-100" src= {{ img_url_10 }} alt="First slide">
-        <div class="carousel-caption d-none d-md-block">
+      <img class="d-block w-100 h-50" src= {{ img_url_10 }} alt="First slide">
+        <div class="carousel-caption d-none d-md-block bg-white">
           <h5> {{ title_10 }}</h5>
           <h5> Featured Ingredient: {{ ing_10 }}</h5>
         </div>
       </a>
     </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only"></span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only"></span>
-  </a>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
 </div>
 </section>
-
+</div>
 <!--scroll to top-->
 <div class="scroll-top">
     <i class="fa fa-angle-up" aria-hidden="true"></i>
