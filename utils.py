@@ -35,9 +35,15 @@ def get_food(user_zip, brand):
     return food
 
 def get_meals(df):
-    tagged = df[((df['tag']!='none') & (df['is_deal']==1))].sample(10)
-    tagged['recipe_info'] = tagged['tag'].apply(lambda x: get_recipies(x))
-    return tagged
+    tagged = df[((df['tag']!='none') & (df['is_deal']==1))]
+    sampledf = tagged.groupby('tag', group_keys=False).apply(lambda df: df.sample(1))
+    if sampledf.shape[0] <=9:
+        extra_row_count = 10 - sampledf.shape[0]
+        sup_df = sampledf.sample(extra_row_count)
+        outdf = pd.concat([sampledf, sup_df])
+    print(outdf.shape)
+    outdf['recipe_info'] = tagged['tag'].apply(lambda x: get_recipies(x))
+    return outdf
 
 def get_recipies(item):
     print('start res')
@@ -48,6 +54,7 @@ def get_recipies(item):
     links = soup.find_all("a")  # Find all elements with the tag <a>
     out = [link.get('href') for link in links if str(link.get("href")).startswith('//www.foodnetwork.com/recipes')]
     urls = [x for x in set(out[9:])]
+    print( f'{len(urls)} urls found')
     rec_url = urls[random.randint(0,len(urls)-1)]
     rec_url = f'https:{rec_url}'
 
@@ -71,11 +78,13 @@ def prep_meal_df(contact,zipcode,food_df):
     df = pd.DataFrame(food_df[['name', 'recipe_info']])
     df['rec_url'] = df['recipe_info'].apply(lambda x: x[0])
     df['img_url'] = df['recipe_info'].apply(lambda x: x[1])
-    df['title'] = df['recipe_info'].apply(lambda x: x[2])
+    df['title'] = df['recipe_info'].apply(lambda x: re.sub('-[0-9]+','',x[2]).replace('-',' '))
     df['contact'] = contact
     df['zip'] = zipcode
-    df['mpid'] = random.randint(10**14,(10**15)-1)
+    mpid = random.randint(10**14,(10**15)-1)
+    df['mpid'] = mpid
     df = df.drop('recipe_info', axis=1)
+    print(mpid)
     return df
 
 def write_meal_df(sh,df):

@@ -78,12 +78,15 @@ def HT_Scraper(zip_code):
     return df
 
 def food_classifier(item):
-    cats = ['whole chicken','pork chop', 'pork tenderloin', 'pork shoulder','tomato','shrimp','turkey sausage', 'ground turkey',
+    # put generics first so that they are overwirtten specifics if and only if available
+    # or actually use deterministic only
+    cats = ['whole chicken','pork chop', 'pork tenderloin', 'pork shoulder','tomato', 'canned tomatoes','shrimp', 'ground turkey',
             'tuna','eggs', 'swordfish', 'whole turkey', 'chicken wings', 'clam',
-            'salmon','potato','mushroom','pasta','rice','ground beef', 'lamb','sausage', 'crab', 'lobster', 'mussel',
-            'bacon', 'carrot', 'bread', 'onion', 'lemon', 'beans', 'chicken breast', 'chicken thigh', 'ground chicken', 'chicken wing'
-            'ham', 'spinach', 'cheddar cheese', 'mozzarella cheese', 'brie', 'mahi'
-            'feta', 'gouda', 'camembert', 'blue cheese', 'parmesan', 'swiss' ,'cheese']
+            'salmon','potato','mushroom','pasta','rice','ground beef', 'lamb','turkey sausage', 'turkey sausage',
+            'italian sausage','chicken sausage', 'crab', 'lobster', 'mussel',
+            'bacon', 'carrot', 'onion', 'lemon', 'beans', 'chicken breast', 'chicken thigh', 'ground chicken', 'chicken wing'
+            'ham', 'spinach','cheddar cheese', 'mozzarella cheese', 'brie', 'mahi'
+            'feta', 'gouda', 'camembert', 'blue cheese', 'parmesan', 'swiss', 'goat','bourson']
 
     curmax = {}
     curmax['id'] = 'none'
