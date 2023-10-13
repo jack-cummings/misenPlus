@@ -80,6 +80,9 @@ def prep_meal_df(contact,zipcode,food_df):
 
 def write_meal_df(sh,df):
     # #write to google
-    sh.update([df.columns.values.tolist()] + df.values.tolist())
+    vals = df.values.tolist()
+    for val in vals:
+        sh.append_row(val, table_range="A1:D1")
+    #sh.update([df.columns.values.tolist()] + df.values.tolist())
 
     return 'done'
