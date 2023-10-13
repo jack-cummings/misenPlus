@@ -73,11 +73,11 @@ async def meals(request: Request):
         mpdf = df[df['mpid']== int(mpid)]
         params = {}
         params['request'] = request
-        for i in range(1,11):
-            params[f'rec_url_{i}'] = mpdf.rec_url.values[i]
-            params[f'img_url_{i}'] = mpdf.img_url.values[i]
-            params[f'title_{i}'] = mpdf.title.values[i]
-            params[f'ing_{i}'] = mpdf.name.values[i]
+        for i in range(0,10):
+            params[f'rec_url_{i+1}'] = mpdf.rec_url.values[i]
+            params[f'img_url_{i+1}'] = mpdf.img_url.values[i]
+            params[f'title_{i+1}'] = mpdf.title.values[i]
+            params[f'ing_{i+1}'] = mpdf.name.values[i]
         return templates.TemplateResponse('meals.html', params)
 
     except Exception as e:
